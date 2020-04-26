@@ -1,11 +1,11 @@
 class Fraction{
-	static int a,b;				//a表示分子，b表示分母
+	int a,b;				//a表示分子，b表示分母
 	double fra = 0.0;			
 	double toDouble(){
 		fra = (float) a / b;
 		return fra;
 	}
-	static int find_greatest_common_factor(int a,int b){
+	int find_greatest_common_factor(int a,int b){
 		int max;
 		max=(a<b?a:b);
 		for (int i =max;i>0;i--){
@@ -38,7 +38,7 @@ class Fraction{
 		newr.b = newb;
 		return newr;
 	}
-	static void print(){
+	void print(){
 		int finala = a /find_greatest_common_factor(a,b);
 		int finalb = b /find_greatest_common_factor(a,b);
 		if (finala==1&&finalb==1) {
@@ -49,15 +49,15 @@ class Fraction{
 
 	}
 	public static void main(String[] args) {
-		// Fraction newfra1 = new Fraction();
-		// newfra1.a = 2;
-		// newfra1.b = 3;
-		// Fraction newfra2 = new Fraction();
-		// newfra2.a = 2;
-		// newfra2.b = 3;
-		// newfra1.plus(newfra2);
-		// print();
-		// newfra1.multiply(newfra2);
-		// print();
+		Fraction newfra1 = new Fraction();
+		newfra1.a = 2;
+		newfra1.b = 3;
+		Fraction newfra2 = new Fraction();
+		newfra2.a = 2;
+		newfra2.b = 3;
+		newfra1 = newfra1.plus(newfra2);
+		newfra1.print();
+		newfra1 = newfra1.multiply(newfra2);
+		newfra1.print();
 	}
 }

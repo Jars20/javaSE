@@ -6,7 +6,7 @@ import club.banyuan.human.Person;
 
 public class Main {
 
-  static void main(String[] args) {
+  public static void main(String[] args) {
     Person person = new Person();
     Cat cat = new Cat();
     cat.name = "汤姆";
