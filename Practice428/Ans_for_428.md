@@ -43,7 +43,7 @@ class Derived extends Base {
 public class Main {
     public static void main(String[] args) {
         Base b = new Derived();;
-        b.show();       //b为Derived类，b的属性show为"Derived::show() called"
+        b.show();       //覆盖，方法show为"Derived::show() called"
     }
 }
 ```
