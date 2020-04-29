@@ -446,3 +446,95 @@ public class MainClass
 	}
 }
 ```
+## 第二次练习
+
+#### 1.
+```
+class Clidder  
+{ 
+    private final void flipper()  
+    { 
+        System.out.println("Clidder"); 
+    } 
+} 
+  
+public class Clidlet extends Clidder  //final不能被继承，编译错误
+{ 
+    public final void flipper()  
+    { 
+        System.out.println("Clidlet"); 
+    } 
+    public static void main(String[] args)  
+    { 
+        new Clidlet().flipper(); 
+    } 
+} 
+```
+#### 2.
+
+```
+class Alpha  
+{ 
+    static String s = " "; 
+    protected Alpha()  
+    { 
+        s += "alpha "; 
+    } 
+} 
+class SubAlpha extends Alpha  
+{ 
+    private SubAlpha()  
+    { 
+        s += "sub ";                    //private不会继承给子类
+    } 
+} 
+  
+public class SubSubAlpha extends Alpha  
+{ 
+    private SubSubAlpha()  
+    { 
+        s += "subsub "; 
+    } 
+    public static void main(String[] args)  
+    { 
+        new SubSubAlpha(); 
+        System.out.println(s);  //printout：alpha subsub
+    } 
+} 
+```
+#### 3.
+```
+class Grandparent  
+{ 
+    public void Print()  
+    { 
+        System.out.println("Grandparent's Print()");  
+    }  
+} 
+  
+class Parent extends Grandparent  
+{ 
+    public void Print()  
+    { 
+        System.out.println("Parent's Print()");  
+    }  
+} 
+  
+class Child extends Parent  
+{ 
+    public void Print()    
+    { 
+        super.super.Print();        //super.super会语法错误
+        System.out.println("Child's Print()");  
+    }  
+} 
+  
+public class Main  
+{ 
+    public static void main(String[] args)  
+    { 
+        Child c = new Child(); 
+        c.Print();  
+    } 
+} 
+```
