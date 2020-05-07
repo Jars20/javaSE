@@ -203,7 +203,7 @@ class Derived extends Test
     } 
 } 
 ```
->在子类自身调用子类时，显示不兼容的类型，Test无法转化为Derived
+>子类调用父类，显示不兼容的类型，Test无法转化为Derived
 
 #### 9.
 ```
