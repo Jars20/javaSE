@@ -97,7 +97,9 @@ interface B extends A
     //Interface B extending Class A  //extending?
 }
 ```
->???
+>即：接口可否继承一个类：不能!
+>也不能继承自抽象类！
+>接口只能继承接口。
 #### 5.
 ```
 interface P
@@ -132,7 +134,8 @@ public class MainClass
     public static void main(String[] args)
     {
         R r = new R();
-         
+        //使用变量名只能访问接口中的接口中的静态成员，但是不能访问静态方法
+        // 
         System.out.println(r.methodP());
          
         System.out.println(r.methodQ());
@@ -146,7 +149,7 @@ class A implements B
 {   
     public int methodB(int i)
     {
-        return i =+ i * i;
+        return i =+ i * i;  //Attentio：=+与+=的区别
     }
 }
  
@@ -181,7 +184,13 @@ interface A
     }
 }
 ```
->接口里面只能有声明，不能有结构体；（static？？？）
+>接口里面不能有代码块与静态代码块；
+>接口中只允许
+>1. static
+>2. 抽象方法声明(public，abstract)
+>3. 成员变量(常量)
+>4. default
+>5. abstract
 
 ####  8.以下内容是否编译通过，如果不能请指出错误原因
 ```
@@ -194,6 +203,8 @@ interface ABC
 
 interface PQR extends ABC
 {
+    //允许接口继承另一个接口，并且声明相同方法签名的方法；
+    //返回值必须一致
 	public void methodOne();
 	
 	public void methodTwo();
@@ -215,8 +226,9 @@ interface PQR extends ABC
 
 abstract class XYZ implements PQR
 {
-	public void methodOne()
-	{
+    
+	public void methodOne()         //抽象类可以不重写。如果不重写
+	{                               //则需要继承的子类重写    
 		methodTwo();
 	}
 }
@@ -239,7 +251,8 @@ public class MainClass
 	}
 }
 ```
->不能编译。XYZ引入接口后没有全部重写接口的方法
+>不断重写。递归调用
+>可以编译。运行后死循环，直到栈溢出。
 
 #### 10.
 ```
@@ -260,7 +273,7 @@ class Y implements X
     {
         char c = this.c;
          
-        return ++c;
+        return ++c;             //并不影响接口中的c
     }
 }
  
@@ -324,6 +337,7 @@ class Four extends Three implements One, Two
 {
     public String methodONE()
     {
+        
         String s = super.s + One.s;
          
         return s;
@@ -338,7 +352,7 @@ public class MainClass
          
         System.out.println(four.methodONE());
          
-        One one = four;
+        One one = four;         //four.s时，有两个s，抽象类和接口。因此会报错
          
         System.out.println(one.s);
     }
@@ -401,22 +415,22 @@ class D implements A, B, C
      
     public int methodA()
     {
-        i =+ i / i;
+        i =+ i / i;         //ATTENTION:  =+，1
          
         return i;
     }
      
     public int methodB()
     {
-        i =- i * i;
+        i =- i * i;         //经过A之后，i=1；
          
         return i;
     }
      
     public int methodC()
     {
-        i = ++i - --i;
-         
+        i = ++i - --i;      //经过A、B之后，i = 1；0 + 1 = 1
+                            //i为有状态的成员，D为有状态的类
         return i;
     }
 }
@@ -552,12 +566,12 @@ interface B
  
 class C extends A implements B
 {
-    void myMethod(Number N) 
+    void myMethod(Number N)             //重写A
     {
         System.out.println("Number");
     }
      
-    public void myMethod(Object O)
+    public void myMethod(Object O)                  //重写B
     {
         System.out.println("Object");
     }
@@ -569,7 +583,7 @@ public class MainClass
     {
         A a = new C();
          
-        a.myMethod(new Integer(121));
+        a.myMethod(new Integer(121));           //Integer为Numbers的子类，int
          
         B b = new C();
          
@@ -577,7 +591,7 @@ public class MainClass
          
         C c = new C();
          
-        c.myMethod(new Integer(121));
+        c.myMethod(new Integer(121));           //121为Obj也为Num，调用亲近的一个的函数
     }
 }
 ```
@@ -624,7 +638,11 @@ public class MainClass
         m.method(new B());
          
         m.method(new C());
-    }
+    }                                   //如果重载的方法中两个方法的入参存在父子关系，那么当传入子类对象或子类对象的子类对象后
+                                        //调用和传入对象关系较近的子类入参的方法
+                                            
+                                        //如果重载方法的两个方法入参是两个接口类型，如果这两个接口类型没有父子关系，
+                                        //那么在调用重载方法时传入同时实现了两个接口的类的对象，则会编译报错，除非两个接口存在父子关系，则会调用子类接口对应的重载方法
 }
 ```
 > printout:2;3;3(?);
