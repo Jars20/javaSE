@@ -22,17 +22,16 @@ public class HashMap implements Map {
 
     @Override
     public boolean containsKey(Object key) {
-        if (key == null) {
-            return false;
-        }
-        int hashCode = key.hashCode();
-        List list = listArr[hashCode % INIT_LENGTH];
-        if (list != null) {
-            Iterator iterator = list.iterator();
-            while (iterator.hasNext()) {
-                Entry entry = (Entry) iterator.next();
-                if (entry.getKey().equals(key)) {
-                    return true;
+        if (key != null) {
+            int hashCode = key.hashCode();
+            List list = listArr[hashCode % INIT_LENGTH];
+            if (list != null) {
+                Iterator iterator = list.iterator();
+                while (iterator.hasNext()) {
+                    Entry entry = (Entry) iterator.next();
+                    if (entry.getKey().equals(key)) {
+                        return true;
+                    }
                 }
             }
         }
@@ -59,24 +58,21 @@ public class HashMap implements Map {
 
     @Override
     public Object get(Object key) {
-        if (key == null) {
-            return null;
-        }
+        if (key != null) {
+            int hashCode = key.hashCode();
+            List list = listArr[hashCode % INIT_LENGTH];
+            if (list == null) {
+                return null;
+            }
 
-        int hashCode = key.hashCode();
-        List list = listArr[hashCode % INIT_LENGTH];
-        if (list == null) {
-            return null;
-        }
-
-        Iterator iterator = list.iterator();
-        while (iterator.hasNext()) {
-            Entry entry = (Entry) iterator.next();
-            if (entry.getKey().equals(key)) {
-                return entry.getValue();
+            Iterator iterator = list.iterator();
+            while (iterator.hasNext()) {
+                Entry entry = (Entry) iterator.next();
+                if (entry.getKey().equals(key)) {
+                    return entry.getValue();
+                }
             }
         }
-
         return null;
     }
 
@@ -107,38 +103,34 @@ public class HashMap implements Map {
 
     @Override
     public Object remove(Object key) {
-        if (key == null) {
-            return null;
-        }
+        if (key != null) {
 
-        int hashCode = key.hashCode();
-        List list = listArr[hashCode % INIT_LENGTH];
+            int hashCode = key.hashCode();
+            List list = listArr[hashCode % INIT_LENGTH];
 
 
-        Iterator iterator = list.iterator();
-        int keyIndex = -1;
-        boolean findKey = false;            //增加一个标记是否找到key的boolean变量
-        Object valuePrintout = null;        //最后要输出的value值
-        while (iterator.hasNext()) {
-            Entry entry = (Entry) iterator.next();
-            keyIndex++;
-            if (entry.getKey().equals(key)) {
-                valuePrintout = entry.getValue();
-                findKey = true;
-                break;
+            Iterator iterator = list.iterator();
+            int keyIndex = -1;                  //index为List.remove的下标，第一次执行循环后变为0；
+            boolean findKey = false;            //增加一个标记是否找到key的boolean变量；
+            Object valuePrintout = null;        //最后要输出的value值；
+            while (iterator.hasNext()) {
+                Entry entry = (Entry) iterator.next();
+                keyIndex++;
+                if (entry.getKey().equals(key)) {
+                    valuePrintout = entry.getValue();
+                    findKey = true;
+                    break;
+                }
             }
-        }
-        if (findKey) {
-            list.remove(keyIndex);
-            size--;
-            return valuePrintout;
-        }
+            if (findKey) {
+                list.remove(keyIndex);
+                size--;
+                return valuePrintout;
+            }
 
-
+        }
         return null;
     }
-
-
 
 
 }
