@@ -116,7 +116,7 @@ public class HashMap implements Map {
 
 
         Iterator iterator = list.iterator();
-        int keyIndex = 0;
+        int keyIndex = -1;
         boolean findKey = false;            //增加一个标记是否找到key的boolean变量
         Object valuePrintout = null;        //最后要输出的value值
         while (iterator.hasNext()) {
@@ -130,6 +130,7 @@ public class HashMap implements Map {
         }
         if (findKey) {
             list.remove(keyIndex);
+            size--;
             return valuePrintout;
         }
 
