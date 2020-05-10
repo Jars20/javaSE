@@ -27,19 +27,22 @@ public class HashMap implements Map {
         }
         int hashCode = key.hashCode();
         List list = listArr[hashCode % INIT_LENGTH];
-        if (list == null) {
-            return false;
-        } else {
-            return true;
+        if (list != null) {
+            Iterator iterator = list.iterator();
+            while (iterator.hasNext()) {
+                Entry entry = (Entry) iterator.next();
+                if (entry.getKey().equals(key)) {
+                    return true;
+                }
+            }
         }
+        return false;
 
     }
 
     @Override
     public boolean containsValue(Object value) {
-        if (value == null) {
-            return false;
-        } else {
+        if (value != null) {
             for (int i = 0; i < INIT_LENGTH; i++) {
                 List list = listArr[i];
                 Iterator iterator = list.iterator();
@@ -50,8 +53,8 @@ public class HashMap implements Map {
                     }
                 }
             }
-            return false;
         }
+        return false;
     }
 
     @Override
@@ -115,7 +118,7 @@ public class HashMap implements Map {
         Iterator iterator = list.iterator();
         int keyIndex = 0;
         boolean findKey = false;            //增加一个标记是否找到key的boolean变量
-        Object valuePrintout = null;
+        Object valuePrintout = null;        //最后要输出的value值
         while (iterator.hasNext()) {
             Entry entry = (Entry) iterator.next();
             keyIndex++;
@@ -133,4 +136,8 @@ public class HashMap implements Map {
 
         return null;
     }
+
+
+
+
 }
