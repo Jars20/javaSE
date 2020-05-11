@@ -111,22 +111,23 @@ public class HashMap implements Map {
 
             Iterator iterator = list.iterator();
             int keyIndex = -1;                  //index为List.remove的下标，第一次执行循环后变为0；
-            boolean findKey = false;            //增加一个标记是否找到key的boolean变量；
+//            boolean findKey = false;            //增加一个标记是否找到key的boolean变量；
             Object valuePrintout = null;        //最后要输出的value值；
             while (iterator.hasNext()) {
                 Entry entry = (Entry) iterator.next();
                 keyIndex++;
                 if (entry.getKey().equals(key)) {
                     valuePrintout = entry.getValue();
-                    findKey = true;
-                    break;
+                    list.remove(keyIndex);
+                    size--;
+                    return valuePrintout;
                 }
             }
-            if (findKey) {
-                list.remove(keyIndex);
-                size--;
-                return valuePrintout;
-            }
+//            if (findKey) {
+//                list.remove(keyIndex);
+//                size--;
+//                return valuePrintout;
+//            }
 
         }
         return null;
