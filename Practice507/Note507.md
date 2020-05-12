@@ -14,4 +14,4 @@
 2. static,public,final常量
 3. default
 4. 抽象方法声明
-5. (private方法)
+5. !!!:(private方法), 可以是具体方法实现。
