@@ -35,6 +35,9 @@ public class DataSet {
   }
   public double getAverage() {
     // TODO: Check divide by zero. Compute the average value.
+    if(count==0){
+      return 0;
+    }
     return sum/count;
   }
 
