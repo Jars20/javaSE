@@ -37,6 +37,6 @@ public class Rectangle implements Measurable {
 
   @Override
   public double getMeasure() {
-    return  width*height/2;
+    return  width*height;
   }
 }

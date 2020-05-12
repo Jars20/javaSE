@@ -7,6 +7,6 @@ public class RectangleMeasurer implements Measurer {
 
     @Override
     public double measure(Object anObject) {
-        return ((Rectangle)anObject).width*((Rectangle)anObject).height/2;
+        return ((Rectangle)anObject).width*((Rectangle)anObject).height;
     }
 }
