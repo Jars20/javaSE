@@ -12,7 +12,7 @@ class Outer{
  }  
 }
 ```
->错误。不能在static的main中引用动态的this
+>错误。（main是静态方法，调用静态方法时候没有new外部类16）需要先new外部类然后才能new内部类
 #### 2. 以下代码能否通过编译，为什么
 ```
 static class Outer{
@@ -195,11 +195,11 @@ class A
 abstract class A
 {
     {
-        System.out.println(1);
+        System.out.println(1);             //2.后调用父类的构造代码块
     }
      
     static
-    {
+    {                                   //1.先调用父类的静态代码块
         System.out.println(2);
     }
 }
@@ -207,8 +207,9 @@ abstract class A
 public class MainClass
 {
     public static void main(String[] args)
-    {
+    {               //创建一个子类，并且是内部类（MainClass的内部类）
         A a = new A() { };
+                       //子类的构造代码块在父类的构造代码块调用之后调用
     }
 }
 ```
@@ -270,7 +271,7 @@ class A
     }
 }
 ```
->（？？？）不能。方法{内部类{方法}}
+>（？？？）不能。不可直接new B
 
 #### 13
 ```
@@ -382,9 +383,11 @@ public class MainClass
          
         System.out.println(xyz1.i);
     }
+
 }
 ```
->输出：10099；2；2；因为在内部类中使用this调用时调用的是自己。要是想调用外部类的成员对象需要Outer.this来调用
+
+>输出：10098；2；2；因为在内部类中使用this调用时调用的是自己。要是想调用外部类的成员对象需要Outer.this来调用
 #### 16.
 ```
 class P
