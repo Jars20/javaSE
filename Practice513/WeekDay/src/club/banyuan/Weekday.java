@@ -19,21 +19,17 @@ public enum Weekday {
     }
 
     public static boolean isWeekday(Weekday day) {
-        return day.getCode() <= 5;
+
+        return day.getCode() <= FRIDAY.getCode();
     }
 
     public static boolean isHoliday(Weekday day) {
         return !isWeekday(day);
     }
 
-    public static Weekday getday(String days) {
-        for (Weekday weekday : Weekday.values()) {
-            if (weekday.toString().equals(days)) {
-                return weekday;
-            }
-        }
-        return null;
-//        switch(days.toString){
+    public static Weekday getday(String day) {
+        return Weekday.valueOf(day);
+//        switch(day.toString){
 //            case "Monday":
 //                return MONDAY;
 //            case "Tuesday":
