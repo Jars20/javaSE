@@ -14,7 +14,7 @@ public enum Weekday {
     }
 
 
-    public int getCode() {
+    private int getCode() {
         return ordinal() + 1;
     }
 
