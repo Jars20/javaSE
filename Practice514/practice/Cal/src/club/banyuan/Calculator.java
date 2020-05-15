@@ -40,12 +40,12 @@ public class Calculator {
         // 不同符号数量的各种情况
         switch (tokens.length) {
             case 0:
-                System.out.println("0");
+//                System.out.println("0");
                 // TODO: complete the cases
                 throw new IllegalInputException("Illegal Token Length");
 
             case 1:
-                System.out.println("1");
+//                System.out.println("1");
 
                 // 只有一种情况，用户输入 quit
                 // TODO: complete the cases
@@ -55,7 +55,7 @@ public class Calculator {
                 throw new IllegalInputException("Illegal Argument");                             //其他异常
 
             case 2:
-                System.out.println("2");
+//                System.out.println("2");
 
                 // 只有一种情况，用户输入 负数
                 // TODO: complete the cases
@@ -66,7 +66,7 @@ public class Calculator {
 
 
             case 3:
-                System.out.println("3");
+//                System.out.println("3");
 
                 // 计算表达式
                 // TODO: complete the cases
@@ -87,7 +87,7 @@ public class Calculator {
                 throw new IllegalInputException("Illegal Argument");                             //其他异常
 
             default:
-                System.out.println("4");
+//                System.out.println("4");
 
                 // 4个或等多操作符号抛出异常
                 // TODO: complete the cases
