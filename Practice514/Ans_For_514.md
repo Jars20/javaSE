@@ -124,8 +124,9 @@ class Test
 }
 ```
 >//for循环执行3回，依次输出a[1] = 2;a[2] = 3;a[3] =4;
->//再执行catch  Exception，输出error = ArrayIndexOutOfBoundsException
->错误！！❌编译报错，因为ArrayIndexOutOfBoundsException为Exception的子类
+>//再执行catch  Exception，输出error = ArrayIndexOutOfBoundsException❌！！！错误！！
+
+>>编译报错，因为ArrayIndexOutOfBoundsException为Exception的子类，编译器不通过
 #### 7.
 ```
 class Test
@@ -267,7 +268,8 @@ public int myMethod(){
 
 }
 ```
->  1
+>  ❌：1
+>输出语句：3；                    Attention： finally中如果有return语句，则会先执行finally
 #### 10.
 
 ```
