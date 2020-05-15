@@ -305,7 +305,7 @@ try {
 
       Scanner sc = new Scanner(file);
 
-      throw new IOException();
+      throw new IOException();                  //这里代码没有执行
     }
 
     catch (IOException e) {                     //FileNotFoundException是IOException的子类
