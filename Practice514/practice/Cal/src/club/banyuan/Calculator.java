@@ -70,19 +70,21 @@ public class Calculator {
 
                 // 计算表达式
                 // TODO: complete the cases
-                if (isNUm(tokens[0]) && isNUm(tokens[2])) {
+                String num1 =tokens[0];
+                String num2 = tokens[2];
+                if (isNUm(num1) && isNUm(num2)) {
                     switch (tokens[1]) {
                         case "+":
-                            return toNum(tokens[0]) + toNum(tokens[2]);
+                            return toNum(num1) + toNum(num2);
                         case "-":
-                            return toNum(tokens[0]) - toNum(tokens[2]);
+                            return toNum(num1) - toNum(num2);
                         case "*":
-                            return toNum(tokens[0]) * toNum(tokens[2]);
+                            return toNum(num1) * toNum(num2);
                         case "/":
-                            if(toNum(tokens[2])==0){
+                            if(toNum(num2)==0){
                                 throw new DivideByZeroException();
                             }
-                            return toNum(tokens[0]) / toNum(tokens[2]);
+                            return toNum(num1) / toNum(num2);
                         default:
                             throw new IllegalInputException("Illegal Operator");
                     }
