@@ -124,12 +124,11 @@ public class Calculator {
         // 提取所有运算符号
         String[] tokens = input.split(" ");
 
-
         try {
             System.out.println("The result is: " + compute(tokens));
-            return true;
         } catch (QuitException e) {
             System.out.println("Quitting");
+            return true;
         } catch (IllegalInputException e) {
             System.out.println("Illegal input: " + e.getExceptionType());
         } catch (CalculatorException e) {
@@ -142,7 +141,7 @@ public class Calculator {
             // TODO：输出token的空格
             System.out.print("input was ");
             for (String token : tokens) {
-                System.out.printf(token);
+                System.out.print(token + "");
             }
         }
 
