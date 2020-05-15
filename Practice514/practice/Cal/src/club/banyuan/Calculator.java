@@ -79,6 +79,9 @@ public class Calculator {
                         case "*":
                             return toNum(tokens[0]) * toNum(tokens[2]);
                         case "/":
+                            if(toNum(tokens[2])==0){
+                                throw new DivideByZeroException();
+                            }
                             return toNum(tokens[0]) / toNum(tokens[2]);
                         default:
                             throw new IllegalInputException("Illegal Operator");
