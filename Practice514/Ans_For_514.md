@@ -277,7 +277,7 @@ public int myMethod(){
 
       File file = new File("filename.txt");
 
-      Scanner sc = new Scanner(file);
+      Scanner sc = new Scanner(file);           //exception： FileNotFoundException，不会执行下一条语句。
 
       throw new IOException();
     }
@@ -308,10 +308,42 @@ try {
       throw new IOException();
     }
 
-    catch (IOException e) {
+    catch (IOException e) {                     //FileNotFoundException是IOException的子类
 
       System.out.println("IOException called!!!");
 
     } 
 ```
 > 输出：IOException called!!!
+#### 12
+````
+public class Test {
+ 
+    private static String result = "";
+ 
+    public static void main(String[] args) {
+        test(1);                //1245
+        result += "*";          //1245*
+        test(0);                //1245*134
+        System.out.println(result); 
+    }
+ 
+    public static void test(int i) {
+ 
+        result += "1";
+        try {
+            if (i == 0) {
+                throw new RuntimeException("");
+            }
+            result += "2";
+        } catch (Exception e) {
+            result += "3";
+            return;
+        } finally {
+            result += "4";
+        }
+        result += "5";
+    }
+}
+````
+>输出：1245*134
