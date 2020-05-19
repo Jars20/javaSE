@@ -34,16 +34,14 @@ public class PointUtils {
         Iterator<Point> pointIterator = points.iterator();
         int sumX = 0;
         int sumY = 0;
-        int num = 0;
         while (pointIterator.hasNext()) {
             Point temp = pointIterator.next();
             sumX += temp.getX();
             sumY += temp.getY();
-            num++;
         }
 
-        if (num != 0) {
-            return new Point(sumX / num, sumY / num);
+        if (points.size() != 0) {
+            return new Point(sumX / points.size(), sumY / points.size());
         }
 
         // TODO 使用迭代器完成此方法!
