@@ -516,7 +516,7 @@ class One
         System.out.println("THREE");
     }
      
-    static class Three
+    static class Three                        //内部静态类什么时候用什么时候加载
     {
         {
             System.out.println("FOUR");
@@ -560,6 +560,7 @@ class A
 }
 ```
 >可以编译（？）
+>内部类可以继承外部类，也可以继承外部类的外部类。并且继承的super与Outer所引用的类不同
 
 
 #### 21.
@@ -618,6 +619,7 @@ class OuterClass
     }
 }
 ```
+>i非静态，需要调用时先new OutercClass().new InnerClass()
 > OuterClass.InnerClass.i;
 
 #### 23.
@@ -653,7 +655,7 @@ public class MainClass
 }
 ```
 >注意⚠️//编译报错，static的构造方法中调用非静态的Y（❌）(???)
->答案：无输出，没有执行Y的构造方法
+>答案：无输出，没有执行Y的构造方法,没有new Y
 
 #### 24.
 ```
@@ -719,6 +721,7 @@ class A
 }
 ```
 > 无法实例化，因为classb B为局部申请的类，随着方法运行的结束而结束，不能实例化
+> 外部根本没有办法创建B的实例
 
 #### 27.
 ```
