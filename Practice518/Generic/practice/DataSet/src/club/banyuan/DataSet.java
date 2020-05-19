@@ -3,14 +3,19 @@ package club.banyuan;
 public class DataSet<T>{
 
 
-
-
   private double sum;
   private int count;
   private T maximum;
   private Measurer<T> measurer;
 
   public DataSet() {
+    this.measurer =  new Measurer<T>() {
+      @Override
+      public double measure(T anObject) {
+
+        return ((Measurable)anObject).getMeasure();
+      }
+    };
   }
 
   public DataSet(Measurer<T> aMeasurer) {
@@ -21,28 +26,25 @@ public class DataSet<T>{
   }
 
   public void add(T x) {
-    if (x instanceof Measurable) {
-      this.measurer = creatMeasurer();
-    }
-    addByMeasurer(x);
-  }
-
-  private Measurer<T> creatMeasurer() {
-    return new Measurer<T>() {
-      @Override
-      public double measure(T anObject) {
-        return ((Measurable)anObject).getMeasure();
-      }
-    };
-  }
-
-  private void addByMeasurer(T x) {
     sum = sum + measurer.measure(x);
     if (count == 0 || measurer.measure(maximum) < measurer.measure(x)) {
       maximum = x;
     }
     count++;
   }
+
+
+//  private Measurer<T> creatMeasurer() {
+//    return
+//  }
+
+//  private void addByMeasurer(T x) {
+//    sum = sum + measurer.measure(x);
+//    if (count == 0 || measurer.measure(maximum) < measurer.measure(x)) {
+//      maximum = x;
+//    }
+//    count++;
+//  }
 
 //  private void add(Measurable measurable) {
 //    sum = sum + measurable.getMeasure();
