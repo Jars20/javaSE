@@ -23,7 +23,7 @@ public class PairUtil {
     }
 
 
-    static public <T extends Comparable<T>> Pair<T> minmax1(T[] input){
+    static public <T extends Comparable<T>> Pair<T> minmax(T[] input){
 
         T min = input[0];
         T max = min;
