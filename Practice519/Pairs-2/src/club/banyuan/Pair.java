@@ -1,6 +1,6 @@
 package club.banyuan;
 
-public class Pair<T1,T2> {
+public class Pair<T1,T2 extends Comparable> {
 
         private final T1 first;
         private final T2 second;

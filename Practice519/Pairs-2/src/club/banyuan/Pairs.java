@@ -80,9 +80,7 @@ public class Pairs<K, V> implements Iterable<Pair<K, V>> {
         public void remove() {
             if (temp >= 1) {
 //                Pair<K,V> output = pairs[temp-1];
-                for (int i = temp; i < size; i++) {
-                    pairs[i] = pairs[i + 1];
-                }
+                if (size - temp - 1 >= 0) System.arraycopy(pairs, temp - 1 + 1, pairs, temp - 1, size - temp - 1);
                 size--;
                 return;
             }
