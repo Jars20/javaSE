@@ -26,7 +26,7 @@ public class Pairs<K, V> implements Iterable<Pair<K, V>> {
 
     @SuppressWarnings("unchecked")
     public boolean addPair(K first, V second) {
-        if (size < 9) {
+        if (size < CAPACITY) {
             Pair<K, V> newPair = new Pair<>(first, second);
             pairs[size++] = newPair;
             return true;
@@ -54,11 +54,7 @@ public class Pairs<K, V> implements Iterable<Pair<K, V>> {
 
         @Override
         public boolean hasNext() {
-            if (temp < size) {
-                temp++;
-                return true;
-            }
-            throw new UnsupportedOperationException();
+            return temp<size;
         }
 
         /**
@@ -66,7 +62,7 @@ public class Pairs<K, V> implements Iterable<Pair<K, V>> {
          */
         @Override
         public Pair<K, V> next() {
-            if (temp+1<size) {
+            if (hasNext()) {
                 Pair<K, V> output = pairs[temp++];
                 return output;
             }
@@ -80,7 +76,8 @@ public class Pairs<K, V> implements Iterable<Pair<K, V>> {
         public void remove() {
             if (temp >= 1) {
 //                Pair<K,V> output = pairs[temp-1];
-                if (size - temp - 1 >= 0) System.arraycopy(pairs, temp - 1 + 1, pairs, temp - 1, size - temp - 1);
+                if (size  - temp  >= 0)
+                    System.arraycopy(pairs, temp - 1 + 1, pairs, temp - 1, size  - temp );
                 size--;
                 return;
             }

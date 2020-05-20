@@ -26,7 +26,7 @@ public class PairDriver {
      */
 
 
-    public static <T,E extends Comparable> T largestStadium(Pair<T,E>[] stadiums) {
+    public static <T,E extends Comparable<E>> T largestStadium(Pair<T,E>[] stadiums) {
         T maxName =stadiums[0].getFirst();
         E tempMax = stadiums[0].getSecond();
         for (Pair<T,E> stadium : stadiums) {
