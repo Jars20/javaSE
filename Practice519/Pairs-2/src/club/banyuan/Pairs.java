@@ -28,7 +28,7 @@ public class Pairs<K, V> implements Iterable<Pair<K, V>> {
     public boolean addPair(K first, V second) {
         if (size < 9) {
             Pair<K, V> newPair = new Pair<>(first, second);
-            pairs[++size] = newPair;
+            pairs[size++] = newPair;
             return true;
         } else {
             return false;
@@ -38,6 +38,7 @@ public class Pairs<K, V> implements Iterable<Pair<K, V>> {
 
     @Override
     public Iterator<Pair<K, V>> iterator() {
+
         return new PairIterator();
     }
 
@@ -82,6 +83,7 @@ public class Pairs<K, V> implements Iterable<Pair<K, V>> {
                 for (int i = temp; i < size; i++) {
                     pairs[i] = pairs[i + 1];
                 }
+                size--;
                 return;
             }
             throw new UnsupportedOperationException();
