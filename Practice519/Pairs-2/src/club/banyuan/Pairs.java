@@ -54,7 +54,7 @@ public class Pairs<K, V> implements Iterable<Pair<K, V>> {
         @Override
         public boolean hasNext() {
             if (temp < size) {
-                ++temp;
+                temp++;
                 return true;
             }
             throw new UnsupportedOperationException();
@@ -65,8 +65,8 @@ public class Pairs<K, V> implements Iterable<Pair<K, V>> {
          */
         @Override
         public Pair<K, V> next() {
-            if (hasNext()) {
-                Pair<K, V> output = pairs[++temp];
+            if (temp+1<size) {
+                Pair<K, V> output = pairs[temp++];
                 return output;
             }
             throw new UnsupportedOperationException();
