@@ -13,11 +13,10 @@ public class TimerImpl implements Timer {
     @Override
     public void start() throws IllegalStateException {
         if (startTime != 0) {
-            throw new IllegalStateException("请restart！");
+            throw new IllegalStateException("请reset！");
         }
+        reset();
         startTime = System.currentTimeMillis();
-        terminalTime = startTime;
-
     }
 
 
@@ -26,7 +25,7 @@ public class TimerImpl implements Timer {
         if (startTime == 0) {
             throw new IllegalStateException("请先start！");
         }else if(actualCostTime!=0){
-            throw new IllegalStateException("请先restart！");
+            throw new IllegalStateException("请先reset！");
         }
         else {
             terminalTime = System.currentTimeMillis();
