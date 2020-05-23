@@ -41,7 +41,6 @@ public class ShowMenu {
         System.out.println(e.getMessage());
       }
       System.out.println();
-      return;
     }//while
   }
 
@@ -117,7 +116,7 @@ public class ShowMenu {
     }//while
   }
 
-
+  //判断输入值是否合法，控制返回上一层
   public static int backAndChoice(int length) throws Exception {
     System.out.println("0. Go back");
     System.out.println();
