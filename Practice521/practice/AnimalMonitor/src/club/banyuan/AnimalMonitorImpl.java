@@ -17,6 +17,8 @@ import java.util.stream.Collectors;
  */
 public class AnimalMonitorImpl implements AnimalMonitor {
 
+
+
   // 记录所有发现的动物。
   private List<Sighting> sightings;
 
@@ -104,7 +106,7 @@ public class AnimalMonitorImpl implements AnimalMonitor {
 //          }
 //        },Collectors.summingInt(Sighting::getCount)));
     Map<String, Integer> collect = sightings.stream().collect(
-        Collectors.groupingBy(Sighting::getAnimal, Collectors.summingInt(Sighting::getCount)))
+        Collectors.groupingBy(Sighting::getAnimal, Collectors.summingInt(Sighting::getCount)));
     collect.forEach((k, v) -> {
       if (v < dangerThreshold) {
         System.out.println(k + "是濒危动物 ");
