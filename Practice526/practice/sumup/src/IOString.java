@@ -15,7 +15,7 @@ public class IOString {
       byte[] b = new byte[i];
 
       try {
-        if (is.read(b) != -1) {
+        if (is.read(b) != i) {
           list.add(new String(b));
         } else {
           throw new RuntimeException();
@@ -45,9 +45,9 @@ public class IOString {
 
   public static void printMultiplication(String path, int n) throws IOException {
     OutputStream outputStream = new FileOutputStream(new File(path));
-    for (int i = 0; i < n; i++) {
+    for (int i = 1; i <= n; i++) {
       StringBuilder stringBuilder = new StringBuilder();
-      for (int j = 0; j < n; j++) {
+      for (int j = 1; j <= n; j++) {
         stringBuilder.append(String.format("%d", i * j));
       }
       stringBuilder.append(System.lineSeparator());
