@@ -28,7 +28,7 @@ public class PhoneCallGenerator extends Thread {
         synchronized (phone) {
           phone.startCall(getName(), Integer.toString(counter));
         // 呼叫开始，休眠随机生成的时间，然后结束通话
-          sleep(length * 1000);
+          sleep(length * 100);
           phone.endCall(getName(), Integer.toString(counter));
         }
         // 让其他线程有机会
