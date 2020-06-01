@@ -67,17 +67,13 @@ public class CellularPhone extends Thread {
     display("<" + this.getName() + ">: Waiting...");
   }
 
-  public void addMessage(String newMessage) {
-    lock.lock();
+  public synchronized void addMessage(String newMessage) {
     Message.add(newMessage);
-    lock.unlock();
   }
 
-  public void displayMessages() {
-    lock.lock();
+  public synchronized void displayMessages() {
     Message.forEach(t -> System.out.println("<Phone>: Message: " + t));
     Message = new ArrayList<>();
-    lock.unlock();
   }
 
 
