@@ -1,23 +1,28 @@
 package club.banyuan;
 
-import java.util.concurrent.Executor;
+import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-class MaxThread extends Thread {
+class MaxCallable implements Callable {
 
   private int lo, hi;
   private int[] arr;
   private double ans = 0;
 
-  public MaxThread(int[] arr, int lo, int hi) {
+  public MaxCallable(int[] arr, int lo, int hi) {
     this.lo = lo;
     this.hi = hi;
     this.arr = arr;
   }
 
+
+  public double getAns() {
+    return ans;
+  }
+
   @Override
-  public void run() {
+  public Object call() throws Exception {
     ans = Math.sin(arr[lo]);
     for (int i = lo; i < hi; i++) {
       double sin = Math.sin(arr[i]);
@@ -25,9 +30,6 @@ class MaxThread extends Thread {
         ans = sin;
       }
     }
-  }
-
-  public double getAns() {
     return ans;
   }
 }
@@ -46,11 +48,11 @@ public class MaxMultithreaded {
     double ans = Double.NEGATIVE_INFINITY;
 
     // 创建并启动线程。
-    MaxThread[] ts = new MaxThread[numThreads];
+    MaxCallable[] ts = new MaxCallable[numThreads];
     ExecutorService executorService = Executors.newFixedThreadPool(numThreads);
 
     for (int i = 0; i < numThreads; i++) {
-      ts[i] = new MaxThread(arr, (i * len) / numThreads, ((i + 1) * len / numThreads));
+      ts[i] = new MaxCallable(arr, (i * len) / numThreads, ((i + 1) * len / numThreads));
       executorService.submit(ts[i]);
     }
 
