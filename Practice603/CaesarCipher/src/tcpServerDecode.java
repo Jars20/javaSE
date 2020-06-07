@@ -27,6 +27,7 @@ public class tcpServerDecode {
       inStream = new BufferedReader(new InputStreamReader(socket1.getInputStream()));
       outStream = new BufferedWriter(new OutputStreamWriter(socket1.getOutputStream()));
 
+
       //得出bufferReader中的第一个字符的标记
       //0表示需要加密，1表示需要解密
       char[] flag = new char[1];
@@ -49,9 +50,10 @@ public class tcpServerDecode {
           outStream.write(temp.toString());
           outStream.newLine();
           outStream.flush();
+          System.out.println(temp.toString());
           Line = inStream.readLine();
         }
-      }else {
+      } else {
         System.out.println("格式错误");
       }
     } catch (IOException e) {
