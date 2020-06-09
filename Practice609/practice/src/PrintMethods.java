@@ -27,28 +27,12 @@ public class PrintMethods {
     List<Field> temp1 = new ArrayList<>(Arrays.asList(fields));
     List<Method> temp2 = new ArrayList<>(Arrays.asList(methods));
 
-    temp1.sort(new Comparator<Field>() {
-      @Override
-      public int compare(Field o1, Field o2) {
-        /*
-         * int compare(Field o1, Field o2) 返回一个基本类型的整型，
-         * 返回负数表示：o1小于o2，
-         * 返回0 表示：o1和o2相等，
-         * 返回正数表示：o1大于o2
-         */
-        return o1.getName().compareTo(o2.getName());
-      }
-    });
+    temp1.sort(Comparator.comparing(Field::getName));
     System.out.println("=====================");
-    temp2.sort(new Comparator<Method>() {
-      @Override
-      public int compare(Method o1, Method o2) {
-        return o1.getName().compareTo(o2.getName());
-      }
-    });
+    temp2.sort(Comparator.comparing(Method::getName));
 
     /**
-     * 由于成员变量为大写，大于方法name，直接先打印方法后打印成员变量
+     * 由于成员变量为大写，小于方法name，直接先打印方法后打印成员变量
      */
     temp2.forEach(System.out::println);
     temp1.forEach(System.out::println);
